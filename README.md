@@ -4,42 +4,35 @@ Claude Code Skill - 自动记录项目改动
 
 ## 功能
 
-- **自动记录**：每次 Claude Code 任务结束后自动记录改动
-- **手动汇总**：运行 `/mdf-summarize` 手动触发分类汇总
+- **自动记录**：每次 Claude Code 任务结束后自动记录对话摘要
+- **自动汇总**：达到 10 次或 2000 行时自动触发分类
 
 ## 安装
 
 ```bash
-npm install
-node scripts/install.js
+# 复制 skills 到项目
+cp -r .claude/ {你的项目}/
 ```
 
 ## 使用
 
-1. **自动记录**：安装后，每次任务结束会自动追加到 `docs/mdf/changes.md`
-
-2. **手动汇总**：输入 `/mdf-summarize` 手动触发分类，Claude 会：
-   - 读取 changes.md 内容
-   - 分析并分类到对应文件
-   - 清空 changes.md
+- **自动触发**：安装后，每次任务结束自动追加到 `docs/mdf/changes.md`
+- **手动汇总**：输入 `/mdf-summarize` 手动触发分类
 
 ## 文件结构
 
 ```
-{项目}/
-├── .claude/
-│   ├── settings.json    # Hook 配置
-│   └── skills/
-│       └── mdf-summarize.md
-├── docs/
-│   └── mdf/
-│       ├── changes.md   # 累积记录
-│       └── *.md         # 分类文档
-└── scripts/
-    └── install.js
+.claude/
+├── settings.json       # Stop Hook 配置
+└── skills/
+    ├── mdf-record.md      # 自动记录
+    └── mdf-summarize.md  # 分类汇总
+docs/mdf/
+├── changes.md         # 累积记录
+└── .count            # 计数
 ```
 
-## 分类建议
+## 分类
 
 - `architecture.md` - 架构设计
 - `decisions.md` - 技术决策
