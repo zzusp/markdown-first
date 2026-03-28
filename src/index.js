@@ -2,7 +2,6 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
-import { summarize } from './summarize.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..');
@@ -69,6 +68,7 @@ async function appendChange(content) {
     await fs.writeFile(CHANGES_FILE, record, 'utf-8');
   }
   
+  // 检查触发条件（仅提示，不自动汇总）
   await checkTrigger();
 }
 
@@ -83,12 +83,7 @@ async function checkTrigger() {
   } catch {}
   
   console.log(`[mdf] Record ${count}, lines ${lineCount}`);
-  
-  if (count >= CONFIG.TRIGGER_COUNT || lineCount >= CONFIG.TRIGGER_LINES) {
-    console.log('[mdf] Trigger summarize...');
-    await summarize();
-    await setCount(0);
-  }
+  console.log(`[mdf]已达 ${count} 条或 ${lineCount} 行，请运行 /mdf-summarize 汇总`);
 }
 
 async function main() {
@@ -97,10 +92,8 @@ async function main() {
   if (cmd === 'record') {
     const content = process.argv[3] || '';
     await appendChange(content);
-  } else if (cmd === 'summarize') {
-    await summarize();
   } else {
-    console.log('Usage: node src/index.js <record|summarize> [content]');
+    console.log('Usage: node src/index.js record [content]');
   }
 }
 
