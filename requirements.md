@@ -6,7 +6,7 @@
 
 ## 核心功能需求
 
-1. **Skill 安装**：提供安装脚本，自动配置 Claude Code 的 Stop Hook
+1. **Skill 安装**：手动将 `skills/` 目录复制到目标项目的 `.claude/skills/`，并合并 `.claude/settings.json` 中的 Stop Hook 配置
 2. **自动触发**：每次 Claude Code 任务执行结束后自动触发
 3. **从对话总结**：
    - 从当前对话中提炼关键信息
