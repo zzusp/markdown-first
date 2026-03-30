@@ -18,7 +18,7 @@ description: Review and analyze the decision log (docs/decisions/log.md and rota
 ### 2. 读取项目当前状态
 
 - 查看 `docs/decisions/` 目录下所有文件
-- 尝试运行 `git log --oneline -20` 了解近期提交历史
+- 运行 `git log --oneline -20` 了解近期提交历史
   - 若当前目录不是 git 仓库、未安装 git、或权限受限导致该命令失败：跳过该步骤，不要中断分析流程
 - 对日志中引用的关键文件路径，检查这些文件是否仍存在于项目中
 

@@ -1,2 +1,4 @@
 # Local dev: skill copies and opt-in flag
+.claude/settings.local.json
 .claude/skills/
+.cursor/skills/

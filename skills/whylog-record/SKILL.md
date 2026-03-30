@@ -59,3 +59,4 @@ description: Append the current session's decision rationale to docs/decisions/l
 2. 确认写入成功后，重建 `log.md`，写入 `# Decision Log`
 3. 若当月归档超过 2000 行，拆分为 `log-YYYY-MM-01.md`、`log-YYYY-MM-02.md` …（按序递增）
 4. 告知用户已轮转至哪个归档文件
+
