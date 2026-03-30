@@ -2,7 +2,7 @@
 
 ## Project Philosophy
 
-- **Docs First**: Write documentation before code
+- **Markdown First**: Treat Markdown as the primary source of truth for planning/specs/decisions (not a "docs before code" ordering rule)
 - **README as Spec**: README.md is the source of truth
 - **Everything is Text**: Prefer Markdown for planning, specs
 
@@ -15,7 +15,12 @@
 
 `skills/` contains the canonical skill sources. Users copy these into their
 project's `.claude/skills/` manually. This repo's `.claude/settings.json` is
-a reference Stop Hook configuration.
+a reference trigger configuration.
+
+Key paths:
+- `skills/whylog-record.md` — auto-record skill
+- `skills/whylog-review.md` — on-demand review skill
+- `docs/decisions/log.md` — append-only decision log (template)
 
 ## Local Development Testing
 
@@ -25,19 +30,8 @@ To test skills locally during development:
    ```bash
    cp -r skills/* .claude/skills/
    ```
-2. Create `.claude/mdf-enabled` to enable recording (it is gitignored):
-   ```bash
-   touch .claude/mdf-enabled
-   ```
-3. After testing, remove both:
-   ```bash
-   rm -r .claude/skills .claude/mdf-enabled
-   ```
-
-The Stop Hook in `.claude/settings.json` fires during development too, but
-`mdf-record` exits immediately when `.claude/mdf-enabled` does not exist,
-so there are no side effects without the flag.
+No additional opt-in flag is needed; recording depends on how you trigger `/whylog-record` and whether the session produced file changes/decisions.
 
 ## Auto-record
 
-At the end of every task, before finishing, run `/mdf-record` to log the changes made in this session.
+At the end of every task that **produced file changes or technical decisions**, run `/whylog-record` to log the changes made in this session. Skip for pure Q&A, read-only exploration, or whylog skill execution itself.

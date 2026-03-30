@@ -1,0 +1,21 @@
+# Decision Log
+
+## 2026-03-30 — Clarify "Markdown-First" meaning
+澄清 "Markdown-First" 的含义：Markdown 是首要依据（primary artifact），而不是强制"先写文档后写代码"的顺序约束。已更新 `README.md` 与 `CLAUDE.md` 中的表述以避免误读。
+
+## 2026-03-30 — Remove `.claude/whylog-enabled` opt-in gate
+`whylog-record` 不再检查 `.claude/whylog-enabled` 是否存在；复制 `skills/` 到 `.claude/skills/` 并触发 `/whylog-record` 即可。是否真的写入日志仍取决于本次会话是否产生文件改动/技术决策。
+同时更新了 `README.md` / `CLAUDE.md`，移除“创建该文件才能启用”的说明，避免误解。
+
+## 2026-03-30 — Reconsider log rotation granularity
+把 `whylog-record` 的日志轮转从“按季度 `log-YYYY-QN.md`”调整为“按月 `log-YYYY-MM-N.md`”（超过 2000 行才轮转，且同月内用序号避免冲突）。原因：季度颗粒度下单个归档文件往往内容过大，检索/浏览成本更高。
+
+## 2026-03-30 — Merge rotations within a month
+将轮转归档从 `log-YYYY-MM-N.md` 调整为当月单文件 `log-YYYY-MM.md`：如果当月归档已存在，就把本次 `log.md` 内容追加进去再清空 `log.md`。原因：高频轮转时，按序号会导致当月产生过多归档文件，不利于管理与检索。
+
+## 2026-03-30 — Split large monthly archives
+在“按月合并”的基础上增加分卷：当月归档文件过大时，使用 `log-YYYY-MM-NN.md`（如 `log-2026-03-01.md`）分卷，避免单文件膨胀导致浏览/检索性能下降，同时仍保持每月文件数可控。
+
+## 2026-03-30 — Rotate by entry count (>= 150)
+将 `whylog-record` 的主要轮转触发从“`log.md` 行数 > 2000”改为“日志 entry 标题数量 >= 150”。原因：entry 标题结构更稳定，能减少换行/编辑器换行策略带来的噪音，降低轮转触发抖动。
+涉及: `skills/whylog-record.md`, `README.md`, `requirements.md`

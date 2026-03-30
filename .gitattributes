@@ -1,0 +1,5 @@
+* text=auto
+
+# Keep Markdown stable across platforms to reduce noisy CRLF/LF diffs.
+*.md text eol=lf
+
