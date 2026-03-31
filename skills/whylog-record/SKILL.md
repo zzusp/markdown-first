@@ -23,7 +23,7 @@ description: Append the current session's decision rationale to docs/decisions/l
 
 ## 2. 写入记录
 
-在 `docs/decisions/log.md` 末尾追加，格式自由，外层结构统一：
+按**时间升序**追加（旧在前，新在后）：在 `docs/decisions/log.md` 末尾追加，格式自由，外层结构统一：
 
 ```markdown
 ## YYYY-MM-DD — {简短标题}

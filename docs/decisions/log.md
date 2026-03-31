@@ -22,3 +22,6 @@
 
 ## 2026-03-31 — 移除 Markdown-First 品牌，统一为 WhyLog
 项目名称从 “Markdown-First” 统一为 “WhyLog”。移除了 `CLAUDE.md` 标题中的 “Markdown-First Development Guide” 和对应的 “Markdown First” 理念条目，删除 `README.md` 中 “Markdown-First means...” 说明段落。决策点：该理念描述对项目本身无实质指导价值，且会造成品牌混淆。涉及: `CLAUDE.md`, `README.md`
+
+## 2026-03-31 — 规定 Decision Log 按时间升序排列
+明确规定 `log.md` 采用升序（旧在前，新在后），即每次在文件末尾追加。选择升序的原因：与 skill 已有的 append 模式一致，实现最简单；`whylog-review` 顺序阅读时脉络更自然。已在 `whylog-record` skill 的”写入记录”一节标注。涉及: `.claude/skills/whylog-record/SKILL.md`
