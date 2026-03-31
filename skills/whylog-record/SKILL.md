@@ -25,10 +25,13 @@ description: Record the 'why' behind this session's changes — decisions made, 
 
 ## 2. 写入记录
 
-按**时间升序**追加（旧在前，新在后）：在 `docs/decisions/log.md` 末尾追加，格式自由，外层结构统一：
+> **新 entry 必须追加到文件最末尾。不得插入已有 entry 之间。**
+> 写入后确认：新 entry 是文件中最后一个 `## YYYY-MM-DD` 标题，且其日期不早于前一条 entry 的日期。
+
+格式自由，外层结构统一：
 
 ```markdown
-## YYYY-MM-DD — {简短标题}
+## YYYY-MM-DD HH:MM — {简短标题}
 
 {1~5 句话，不要硬凑。包含以下要素，按需取舍：}
 - 做了什么、为什么
@@ -51,7 +54,7 @@ description: Record the 'why' behind this session's changes — decisions made, 
 已记录: {标题} → docs/decisions/log.md
 ```
 
-其中 `{标题}` 与写入的 `## YYYY-MM-DD — {标题}` 保持一致。用户可要求修正。
+其中 `{标题}` 与写入的标题保持一致。用户可要求修正。
 
 ## 4. 日志轮转
 
@@ -59,7 +62,7 @@ description: Record the 'why' behind this session's changes — decisions made, 
 
 1. 取 `log.md` 中**第一条** entry 标题的月份（`YYYY-MM`）作为归档文件名，避免跨月内容被错误归入当前月
 2. 将 `log.md` 全部内容追加到 `docs/decisions/log-YYYY-MM.md`（不存在则创建）
-3. 确认写入成功后，重建 `log.md`，写入 `# Decision Log`
+3. 确认写入成功后，重建 `log.md`，写入 `# Decision Log` 和排序说明
 4. 若该归档文件超过 2000 行，拆分为 `log-YYYY-MM-01.md`、`log-YYYY-MM-02.md` …（按序递增）
 5. 告知用户已轮转至哪个归档文件
 

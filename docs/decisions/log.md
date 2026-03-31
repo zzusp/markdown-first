@@ -1,5 +1,7 @@
 # Decision Log
 
+> 按时间升序排列（旧在前，新在后），新 entry 追加到文件末尾。
+
 ## 2026-03-30 — Clarify "Markdown-First" meaning
 澄清 "Markdown-First" 的含义：Markdown 是首要依据（primary artifact），而不是强制"先写文档后写代码"的顺序约束。已更新 `README.md` 与 `CLAUDE.md` 中的表述以避免误读。
 
@@ -35,5 +37,6 @@
 ## 2026-03-31 — 修复 whylog-record skill 两处逻辑问题
 ①Step 0 判断为"跳过"后缺少显式结束指令，补充"输出说明后直接结束，不执行后续步骤"，防止模型继续往下走；②Step 4.4 "当月归档"措辞与已改为"取第一条 entry 月份"的逻辑不一致，改为"该归档文件"。三处副本（`skills/`、`.claude/skills/`、`.cursor/skills/`）同步更新。
 
-## 2026-03-31 — 去除 README 重复内容，优化 skill description
-`README.md` Trigger Method 章节原与 Quick Start 包含相同的 CLAUDE.md 代码块，改为引用链接消除重复。同步优化两个 skill 的 description：`whylog-record` 去掉实现细节（log rotation），改为强调"记录 why + 触发时机"；`whylog-review` 补上"On-demand"定性并列出典型使用场景，便于触发匹配。六个副本（`skills/`、`.claude/skills/`、`.cursor/skills/`）全部同步。
+## 2026-03-31 19:45 — 修复排序约束、升级时间精度、完善文件头说明
+
+强化追加约束：Step 2 新增着重警告禁止插入已有 entry 之间，并要求写入后自检；去掉 emoji 改用加粗；格式从 `YYYY-MM-DD` 升级为 `YYYY-MM-DD HH:MM`，支持同天多条；`log.md` 头部和 skill 轮转中统一加上排序说明。三处副本同步更新。
