@@ -15,7 +15,7 @@ Run the following in your project root:
 ```bash
 # 1. Copy skills
 mkdir -p .claude/skills
-cp /path/to/WhyLog/skills/* .claude/skills/
+cp -r /path/to/WhyLog/skills/* .claude/skills/
 
 # 2. Create the decisions log
 mkdir -p docs/decisions
@@ -52,24 +52,25 @@ Reads `docs/decisions/log.md`, checks which referenced files still exist, then a
 - "What's outdated in the log?"
 - "Generate an onboarding summary for new team members"
 
-## Trigger Methods
+## Supported Editors
 
-### Method A: CLAUDE.md instruction (recommended, cross-platform)
+| Editor | Skills path |
+|---|---|
+| Claude Code | `.claude/skills/` |
+| Cursor | `.cursor/skills/` |
 
-Add to your project's `CLAUDE.md`:
+Copy the contents of `skills/` into the corresponding path for your editor.
 
-```markdown
-## Auto-record
+## Trigger Method
 
-At the end of every task that **produced file changes or technical decisions**, run `/whylog-record`. Skip for pure Q&A, read-only exploration, or whylog skill execution itself.
-```
+Add the Auto-record snippet from [Quick Start](#quick-start) to your project's `CLAUDE.md`.
 
 ## File Structure
 
 | Path | Description |
 |---|---|
-| `skills/whylog-record.md` | Skill: record decision context after each task |
-| `skills/whylog-review.md` | Skill: interactive decision log analysis |
+| `skills/whylog-record/SKILL.md` | Skill: record decision context after each task |
+| `skills/whylog-review/SKILL.md` | Skill: interactive decision log analysis |
 | `docs/decisions/log.md` | Append-only decision log |
 | `docs/decisions/log-YYYY-MM.md` | Rotated archives (auto-generated, may split to `log-YYYY-MM-NN.md`) |
 

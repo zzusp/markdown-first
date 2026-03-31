@@ -13,12 +13,12 @@
 ## Repository Structure
 
 `skills/` contains the canonical skill sources. Users copy these into their
-project's `.claude/skills/` manually. This repo's `.claude/settings.json` is
-a reference trigger configuration.
+project's `.claude/skills/` (Claude Code) or `.cursor/skills/` (Cursor) manually.
+This repo's `.claude/settings.json` is a reference trigger configuration.
 
 Key paths:
-- `skills/whylog-record.md` — auto-record skill
-- `skills/whylog-review.md` — on-demand review skill
+- `skills/whylog-record/SKILL.md` — auto-record skill
+- `skills/whylog-review/SKILL.md` — on-demand review skill
 - `docs/decisions/log.md` — append-only decision log (template)
 
 ## Local Development Testing
@@ -30,6 +30,12 @@ To test skills locally during development:
    cp -r skills/* .claude/skills/
    ```
 No additional opt-in flag is needed; recording depends on how you trigger `/whylog-record` and whether the session produced file changes/decisions.
+
+> **Sync reminder**: `skills/` is the canonical source. After editing any skill here, sync to the editor copies:
+> ```bash
+> cp -r skills/* .claude/skills/
+> cp -r skills/* .cursor/skills/
+> ```
 
 ## Auto-record
 

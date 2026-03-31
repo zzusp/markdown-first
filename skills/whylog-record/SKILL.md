@@ -1,6 +1,6 @@
 ---
 name: whylog-record
-description: Append the current session's decision rationale to docs/decisions/log.md after tasks that produce meaningful project changes or technical decisions; includes automatic log rotation.
+description: Record the 'why' behind this session's changes — decisions made, reasoning, and alternatives considered — and append to docs/decisions/log.md. Trigger after tasks that produced file changes or technical decisions.
 ---
 
 # whylog-record
@@ -16,6 +16,8 @@ description: Append the current session's decision rationale to docs/decisions/l
 **酌情记录**：仅修改了文档或测试——若背后有值得留存的决策理由则记录，纯格式/typo 修正则跳过
 
 **跳过**：纯问答、纯阅读/探索、任务未完成或被取消、whylog skill 自身执行、仅修改了 `docs/decisions/` 下的文件
+
+若判断为**跳过**，输出一行说明（如"无需记录：纯问答"）后直接结束，不执行后续步骤。
 
 ## 1. 确保日志文件存在
 
@@ -55,8 +57,9 @@ description: Append the current session's decision rationale to docs/decisions/l
 
 统计 `log.md` 中以 `## YYYY-MM-DD` 开头的标题数量，若 >= 150：
 
-1. 将 `log.md` 全部内容追加到 `docs/decisions/log-YYYY-MM.md`（当月归档，不存在则创建）
-2. 确认写入成功后，重建 `log.md`，写入 `# Decision Log`
-3. 若当月归档超过 2000 行，拆分为 `log-YYYY-MM-01.md`、`log-YYYY-MM-02.md` …（按序递增）
-4. 告知用户已轮转至哪个归档文件
+1. 取 `log.md` 中**第一条** entry 标题的月份（`YYYY-MM`）作为归档文件名，避免跨月内容被错误归入当前月
+2. 将 `log.md` 全部内容追加到 `docs/decisions/log-YYYY-MM.md`（不存在则创建）
+3. 确认写入成功后，重建 `log.md`，写入 `# Decision Log`
+4. 若该归档文件超过 2000 行，拆分为 `log-YYYY-MM-01.md`、`log-YYYY-MM-02.md` …（按序递增）
+5. 告知用户已轮转至哪个归档文件
 

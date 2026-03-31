@@ -18,10 +18,22 @@
 
 ## 2026-03-30 — Rotate by entry count (>= 150)
 将 `whylog-record` 的主要轮转触发从”`log.md` 行数 > 2000”改为”日志 entry 标题数量 >= 150”。原因：entry 标题结构更稳定，能减少换行/编辑器换行策略带来的噪音，降低轮转触发抖动。
-涉及: `skills/whylog-record.md`, `README.md`, `requirements.md`
+涉及: `skills/whylog-record/SKILL.md`, `README.md`, `requirements.md`
 
 ## 2026-03-31 — 移除 Markdown-First 品牌，统一为 WhyLog
 项目名称从 “Markdown-First” 统一为 “WhyLog”。移除了 `CLAUDE.md` 标题中的 “Markdown-First Development Guide” 和对应的 “Markdown First” 理念条目，删除 `README.md` 中 “Markdown-First means...” 说明段落。决策点：该理念描述对项目本身无实质指导价值，且会造成品牌混淆。涉及: `CLAUDE.md`, `README.md`
 
 ## 2026-03-31 — 规定 Decision Log 按时间升序排列
 明确规定 `log.md` 采用升序（旧在前，新在后），即每次在文件末尾追加。选择升序的原因：与 skill 已有的 append 模式一致，实现最简单；`whylog-review` 顺序阅读时脉络更自然。已在 `whylog-record` skill 的”写入记录”一节标注。涉及: `.claude/skills/whylog-record/SKILL.md`
+
+## 2026-03-31 — 修复文档路径过时、补充 Cursor 支持、修复轮转月份逻辑
+集中修复了几处积累的问题：①`README.md`、`requirements.md`、`CLAUDE.md` 中的 skill 路径从旧的单文件格式（`whylog-record.md`）更新为子目录格式（`whylog-record/SKILL.md`）；②`README.md` 新增 Supported Editors 章节，明确 Claude Code（`.claude/skills/`）和 Cursor（`.cursor/skills/`）两种安装路径；③`CLAUDE.md` 新增 sync 命令提示，避免更新 `skills/` 后漏同步副本；④`whylog-record` 轮转逻辑改为取第一条 entry 的月份作为归档文件名，避免跨月内容被归入当前月；⑤三处副本（`skills/`、`.claude/skills/`、`.cursor/skills/`）全部同步至最新。
+
+## 2026-03-31 — 文档细节二轮修复
+修复了上一轮遗留的几处细节：①`README.md` Quick Start 的 `cp` 命令补加 `-r` 标志（子目录格式需要递归复制）；②"Trigger Methods / Method A" 简化为 "Trigger Method"（只剩一种方式，原标题冗余）；③`requirements.md` 轮转描述同步为"以第一条 entry 的月份命名"；④`requirements.md` 安装说明补充 Cursor；⑤`CLAUDE.md` Repository Structure 补充 Cursor 说明。涉及: `README.md`, `requirements.md`, `CLAUDE.md`
+
+## 2026-03-31 — 修复 whylog-record skill 两处逻辑问题
+①Step 0 判断为"跳过"后缺少显式结束指令，补充"输出说明后直接结束，不执行后续步骤"，防止模型继续往下走；②Step 4.4 "当月归档"措辞与已改为"取第一条 entry 月份"的逻辑不一致，改为"该归档文件"。三处副本（`skills/`、`.claude/skills/`、`.cursor/skills/`）同步更新。
+
+## 2026-03-31 — 去除 README 重复内容，优化 skill description
+`README.md` Trigger Method 章节原与 Quick Start 包含相同的 CLAUDE.md 代码块，改为引用链接消除重复。同步优化两个 skill 的 description：`whylog-record` 去掉实现细节（log rotation），改为强调"记录 why + 触发时机"；`whylog-review` 补上"On-demand"定性并列出典型使用场景，便于触发匹配。六个副本（`skills/`、`.claude/skills/`、`.cursor/skills/`）全部同步。

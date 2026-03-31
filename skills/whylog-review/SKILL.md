@@ -1,6 +1,6 @@
 ---
 name: whylog-review
-description: Review and analyze the decision log (docs/decisions/log.md and rotated archives) to answer questions about past project decisions.
+description: On-demand analysis of the project's decision history (docs/decisions/log.md and rotated archives). Use to query past decisions, summarize recent progress, identify outdated records, or generate onboarding context.
 ---
 
 # whylog-review
