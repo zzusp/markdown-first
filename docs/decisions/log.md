@@ -17,5 +17,8 @@
 在“按月合并”的基础上增加分卷：当月归档文件过大时，使用 `log-YYYY-MM-NN.md`（如 `log-2026-03-01.md`）分卷，避免单文件膨胀导致浏览/检索性能下降，同时仍保持每月文件数可控。
 
 ## 2026-03-30 — Rotate by entry count (>= 150)
-将 `whylog-record` 的主要轮转触发从“`log.md` 行数 > 2000”改为“日志 entry 标题数量 >= 150”。原因：entry 标题结构更稳定，能减少换行/编辑器换行策略带来的噪音，降低轮转触发抖动。
+将 `whylog-record` 的主要轮转触发从”`log.md` 行数 > 2000”改为”日志 entry 标题数量 >= 150”。原因：entry 标题结构更稳定，能减少换行/编辑器换行策略带来的噪音，降低轮转触发抖动。
 涉及: `skills/whylog-record.md`, `README.md`, `requirements.md`
+
+## 2026-03-31 — 移除 Markdown-First 品牌，统一为 WhyLog
+项目名称从 “Markdown-First” 统一为 “WhyLog”。移除了 `CLAUDE.md` 标题中的 “Markdown-First Development Guide” 和对应的 “Markdown First” 理念条目，删除 `README.md` 中 “Markdown-First means...” 说明段落。决策点：该理念描述对项目本身无实质指导价值，且会造成品牌混淆。涉及: `CLAUDE.md`, `README.md`

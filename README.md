@@ -2,8 +2,6 @@
 
 A Claude Code Skill suite that captures decision context from your conversations — the "why" behind code changes that git never records.
 
-Markdown-First means Markdown is the primary priority for planning/specs/decisions (not a "docs before code" sequencing rule).
-
 ## Features
 
 - **Auto-record**: After tasks that produce file changes or technical decisions, a summary is appended to `docs/decisions/log.md`

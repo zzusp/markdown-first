@@ -1,8 +1,7 @@
-# CLAUDE.md - Markdown-First Development Guide
+# CLAUDE.md - WhyLog
 
 ## Project Philosophy
 
-- **Markdown First**: Treat Markdown as the primary source of truth for planning/specs/decisions (not a "docs before code" ordering rule)
 - **README as Spec**: README.md is the source of truth
 - **Everything is Text**: Prefer Markdown for planning, specs
 
